@@ -1,0 +1,25 @@
+@startuml
+!pragma layout smetana
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+
+System_Boundary(xmltvfr, "XmlTvFr.fr", "") {
+    Container(xmltvfr_api, "XmlTvFr API", "PHP", "API for accessing XMLTV data for French TV channels")
+}
+
+System_Boundary(tvprogapi, "TVProgAPI", "") {
+    Container(tvprogapi_server, "TVProgAPI API", "Spring Boot", "API for accessing TV program data")
+    ContainerDb(tvprogapi_db, "TVProgAPI Database", "PostgreSQL", "Database for storing TV program data")
+}
+
+Container(tvprogapp, "TVProgApp", "Flutter", "TV Prog mobile application")
+
+Person(user, "User", "Uses the TV Prog mobile application to view TV programs")
+
+Rel(xmltvfr_api, tvprogapi_server, "Fetches TV program data", "HTTP/XML/ZIP")
+Rel(tvprogapi_server, tvprogapi_db, "Writes channels and programs", "JDBC")
+Rel(tvprogapi_db, tvprogapi_server, "Fetch channels and programs data", "JDBC")
+Rel(tvprogapi_server, tvprogapp, "Provides TV program data", "HTTP/JSON")
+Rel(user, tvprogapp, "Uses", "Mobile App")
+
+@enduml
