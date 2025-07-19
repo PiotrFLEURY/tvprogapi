@@ -21,4 +21,4 @@ jobs:
       - name: Build Docker image
         run: |
           docker build -t tvprogapi:latest .
-          docker push ghcr.io/PiotrFLEURY/tvprogapi:latest
+          docker push ghcr.io/piotrfleury/tvprogapi:latest
