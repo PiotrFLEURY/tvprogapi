@@ -29,7 +29,7 @@ class ProgramDatabaseRepository(
 
     override fun getChannelPrograms(channelId: String, pageable: Pageable): Page<ProgramEntity> {
         return programCrudRepository
-            .findByChannelIdAndStartTimeGreaterThan(
+            .findByChannelIdAndStartTimeGreaterThanOrderByStartTimeAsc(
                 channelId,
                 Date(System.currentTimeMillis()),
                 pageable

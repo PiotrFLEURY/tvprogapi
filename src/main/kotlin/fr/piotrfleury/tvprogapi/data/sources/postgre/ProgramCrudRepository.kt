@@ -9,7 +9,7 @@ import java.sql.Date
 import java.sql.Timestamp
 
 interface ProgramCrudRepository: CrudRepository<ProgramTable, Integer> {
-    fun findByChannelIdAndStartTimeGreaterThan(channelId: String, startTime: Date, pageable: Pageable): Page<ProgramTable>
+    fun findByChannelIdAndStartTimeGreaterThanOrderByStartTimeAsc(channelId: String, startTime: Date, pageable: Pageable): Page<ProgramTable>
 
     @Query("""
         SELECT * FROM programs
