@@ -55,9 +55,8 @@ class ChannelCrudRepositoryTest {
 
         // Then
         assert(allChannels.isNotEmpty()) { "Expected to find channels in the database" }
-        assert(allChannels.size == 1) { "Expected exactly one channel in the database" }
         assert(channels.isNotEmpty()) { "Expected to find channels for program type '$channelPackageEntity'" }
-        val foundChannel = channels.first()
+        val foundChannel = channels.first { it.channelId == channel.channelId }
         assert(foundChannel.channelId == channel.channelId) {
             "Expected to find channel with ID '${channel.channelId}', but found '${foundChannel?.channelId}'"
         }

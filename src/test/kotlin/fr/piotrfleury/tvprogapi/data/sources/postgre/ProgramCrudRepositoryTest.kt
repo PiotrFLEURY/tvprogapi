@@ -28,7 +28,7 @@ class ProgramCrudRepositoryTest {
     @Test
     fun tonightProgram() {
         // Given
-        val channelId = "test_channel"
+        val channelId = "test_channel_program"
         val now = Calendar.getInstance()
         now.set(Calendar.HOUR_OF_DAY, 20)
         now.set(Calendar.MINUTE, 30)
