@@ -23,9 +23,7 @@ interface ProgramCrudRepository: CrudRepository<ProgramTable, Integer> {
     @Query("""
         SELECT * FROM programs
         WHERE channel_id = :channelId
-        AND :targetTime >= start_time
-        AND :targetTime < start_time + INTERVAL '1 hours'
-        AND end_time >= :targetTime
+        AND start_time >= :targetTime
         -- duration is at least 1 hours
         AND (end_time - start_time) >= INTERVAL '1 hour'
         ORDER BY start_time ASC

@@ -44,8 +44,8 @@ class ProgramDatabaseRepository(
 
     override fun getTonightProgram(channelId: String): ProgramEntity? {
         val now = Calendar.getInstance()
-        now.set(Calendar.HOUR_OF_DAY, 21)
-        now.set(Calendar.MINUTE, 0)
+        now.set(Calendar.HOUR_OF_DAY, 20)
+        now.set(Calendar.MINUTE, 30)
         val tonight = Timestamp(now.timeInMillis)
         val tonightProgram = programCrudRepository.findTonightByChannelId(channelId, tonight)
         return programConverter.tableToEntity(tonightProgram)
