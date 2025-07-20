@@ -5,10 +5,12 @@ import fr.piotrfleury.tvprogapi.data.models.psql.ChannelPackageTable
 import fr.piotrfleury.tvprogapi.data.models.psql.ChannelTable
 import fr.piotrfleury.tvprogapi.domain.entities.ChannelEntity
 import fr.piotrfleury.tvprogapi.domain.entities.ChannelPackageEntity
+import fr.piotrfleury.tvprogapi.domain.usecases.FetchXmlTv
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.Import
+import org.springframework.test.context.bean.override.mockito.MockitoBean
 
 @Import(TestcontainersConfiguration::class)
 @SpringBootTest
@@ -19,6 +21,9 @@ class ChannelCrudRepositoryTest {
 
     @Autowired
     lateinit var channelPackageCrudRepository: ChannelPackageCrudRepository
+
+    @MockitoBean
+    lateinit var fetchXmlTv: FetchXmlTv
 
     @Test
     fun testFindChannelsForProgramType() {

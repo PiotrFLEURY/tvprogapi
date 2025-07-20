@@ -25,14 +25,6 @@ class TvprogapiApplication {
 		return retrofit.create(XmlTvApi::class.java)
 	}
 
-	@Bean
-	fun tvProgApiConfig(environment: Environment): TvProgApiConfig {
-		val initOnStartup = environment.getProperty("tvprogapi.init.on.startup", Boolean::class.java, false)
-		return TvProgApiConfig(
-			initOnStartup = initOnStartup
-		)
-	}
-
 }
 
 fun main(args: Array<String>) {

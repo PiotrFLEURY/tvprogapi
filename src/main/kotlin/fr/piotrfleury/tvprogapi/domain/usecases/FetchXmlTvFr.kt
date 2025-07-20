@@ -21,21 +21,16 @@ import org.springframework.stereotype.Service
 class FetchXmlTv(
     val xmlTvFrRepository: XmlTvRepository,
     val channelRepository: ChannelRepository,
-    val programRepository: ProgramRepository,
-    val tvProgApiConfig: TvProgApiConfig
+    val programRepository: ProgramRepository
 ) {
 
     val logger: Logger = LoggerFactory.getLogger(FetchXmlTv::class.java)
 
     @PostConstruct
     private fun init() {
-        if (tvProgApiConfig.initOnStartup) {
-            // Pre-fetch all channels and programs for the default package
-            invoke(ChannelPackageEntity.FR)
-            invoke(ChannelPackageEntity.TNT)
-        } else {
-            logger.info("Skipping initial fetch of XML TV data as per configuration.")
-        }
+        // Pre-fetch all channels and programs for the default package
+        invoke(ChannelPackageEntity.FR)
+        invoke(ChannelPackageEntity.TNT)
     }
 
     private fun fetchPrograms(channelPackageEntity: ChannelPackageEntity): Tv {
